@@ -22,7 +22,6 @@ class Category extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.addItem(this.props.name, this.state.value);
-        console.log(this.props.categories, this.props.index);
         this.setState({value: ''});
     }
 
@@ -43,14 +42,17 @@ class Category extends Component {
         //         console.log("no items");
         //     }
         // }
-        const theItems = categories[index].items.map((el, i) => {
-            return <p key={i}>{el}</p>
-        });
+        // const theItems = categories[index].items.map((el, i) => {
+        //     return <p key={i}>{el}</p>
+        // });
 
         return(
             <>
             <h2>{name}</h2>
-            {theItems}
+            {/* {theItems} */}
+            {(() => {
+                console.log(categories[index].items);
+            })()}
             <form onSubmit={this.handleSubmit}>
                 <input type="text" placeholder="Item" value={this.state.value} onChange={this.handleChange} />
                 <input type="submit" value="Add Item" />
