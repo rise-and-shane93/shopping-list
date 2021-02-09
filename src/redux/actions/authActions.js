@@ -1,4 +1,4 @@
-import {WELCOME_MSG, ADD_CATEGORY} from './types';
+import {WELCOME_MSG, ADD_CATEGORY, ADD_ITEM} from './types';
 
 export const authActions = () => dispatch => {
     dispatch({
@@ -12,5 +12,13 @@ export const addCategory = (catName) => dispatch => {
     dispatch({
         type: ADD_CATEGORY,
         payload: catName
+    })
+}
+
+export const addItem = (catName, itemName) => dispatch => {
+    // console.log(catName);
+    dispatch({
+        type: ADD_ITEM,
+        payload: {catName, itemName}
     })
 }

@@ -9,19 +9,13 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
-            listCategories: []
+            value: ''
         };
     }
 
     componentDidMount() {
         this.props.authActions();
         // console.log(this.props.message);
-    }
-
-    static getDerivedStateFromProps(props, state) {
-        console.log(props.categories);
-        return null;
     }
 
     handleSubmit = (event) => {
@@ -36,27 +30,15 @@ class Home extends Component {
 
     renderCategories = () => {
         console.log(this.props.categories);
-        return this.props.categories.map((el, i) => <p key={i}>{el}</p>)
+        return this.props.categories.map((el, i) => <p key={i}>{el.categoryName}</p>)
     }
 
     render() {
 
         const { categories } = this.props;
         const theCategories = categories.map((el, i) => {
-            return <Category key={i} name={el} />
+            return <Category key={i} index={i} name={el.categoryName} />
         });
-
-        // const playerComponents = players.map((player, index) => (
-        //     <Player
-        //       index={index}
-        //       name={player.name}
-        //       score={player.score}
-        //       key={player.name}
-        //       updatePlayerScore={updatePlayerScore}
-        //       removePlayer={removePlayer}
-        //       playerDetails={playerDetails}
-        //     />
-        //   ));
 
         return(
             <>

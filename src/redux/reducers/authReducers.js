@@ -1,4 +1,4 @@
-import {ADD_CATEGORY, WELCOME_MSG} from '../actions/types';
+import {ADD_CATEGORY, ADD_ITEM, WELCOME_MSG} from '../actions/types';
 
 const initialState = {
     message: "",
@@ -16,7 +16,22 @@ export default function(state = initialState, action) {
         case ADD_CATEGORY:
             return {
                 ...state,
-                categories: [...state.categories, action.payload]
+                categories: [...state.categories, {categoryName: action.payload, items: []}]
+            }
+        case ADD_ITEM:
+            let updatedList = state.categories.map((el,i) => {
+                if (el.categoryName === action.payload.catName) {
+                    return {
+                        categoryName: action.payload.catName, 
+                        items: [...state.categories[i].items, action.payload.itemName]
+                    }
+                } else {
+                    return {...state.categories}
+                }
+            });
+            return{
+                ...state,
+                categories: updatedList
             }
         default:
             return state;
