@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Item from "./Item";
+
 import { connect } from "react-redux";
 import { authActions, addItem } from '../redux/actions/authActions';
 
@@ -32,27 +34,14 @@ class Category extends Component {
     render() {
 
         const {name, index, categories} = this.props;
-        // const theItems = () => {
-        //     if (categories[key].items) {
-        //         console.log("there are items");
-        //         return categories[key].items.map((el, i) => {
-        //             return <p key={i}>{el}</p>
-        //         });
-        //     } else {
-        //         console.log("no items");
-        //     }
-        // }
         const theItems = categories[index].items.map((el, i) => {
-            return <p key={i}>{el}</p>
+            return <Item key={i} name={el} index={i} catName={name} />
         });
 
         return(
             <>
             <h2>{name}</h2>
             {theItems}
-            {(() => {
-                console.log(categories[index].items);
-            })()}
             <form onSubmit={this.handleSubmit}>
                 <input type="text" placeholder="Item" value={this.state.value} onChange={this.handleChange} />
                 <input type="submit" value="Add Item" />
