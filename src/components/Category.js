@@ -42,14 +42,14 @@ class Category extends Component {
         //         console.log("no items");
         //     }
         // }
-        // const theItems = categories[index].items.map((el, i) => {
-        //     return <p key={i}>{el}</p>
-        // });
+        const theItems = categories[index].items.map((el, i) => {
+            return <p key={i}>{el}</p>
+        });
 
         return(
             <>
             <h2>{name}</h2>
-            {/* {theItems} */}
+            {theItems}
             {(() => {
                 console.log(categories[index].items);
             })()}

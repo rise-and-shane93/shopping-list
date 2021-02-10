@@ -26,9 +26,13 @@ export default function(state = initialState, action) {
                         items: [...state.categories[i].items, action.payload.itemName]
                     }
                 } else {
-                    return {...state.categories}
+                    return {
+                        categoryName: el.categoryName,
+                        items: [...state.categories[i].items]
+                    }
                 }
             });
+            // console.log(updatedList);
             return{
                 ...state,
                 categories: updatedList
