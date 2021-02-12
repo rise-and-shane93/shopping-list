@@ -1,4 +1,4 @@
-import {ADD_CATEGORY, ADD_ITEM, WELCOME_MSG} from '../actions/types';
+import {ADD_CATEGORY, ADD_ITEM, REMOVE_ITEM, WELCOME_MSG} from '../actions/types';
 
 const initialState = {
     message: "",
@@ -19,7 +19,7 @@ export default function(state = initialState, action) {
                 categories: [...state.categories, {categoryName: action.payload, items: []}]
             }
         case ADD_ITEM:
-            let updatedList = state.categories.map((el,i) => {
+            let updatedListAdd = state.categories.map((el,i) => {
                 if (el.categoryName === action.payload.catName) {
                     return {
                         categoryName: action.payload.catName, 
@@ -32,10 +32,31 @@ export default function(state = initialState, action) {
                     }
                 }
             });
-            // console.log(updatedList);
+            // console.log(updatedListAdd);
             return{
                 ...state,
-                categories: updatedList
+                categories: updatedListAdd
+            }
+        case REMOVE_ITEM:
+            let updatedListRemove = state.categories.map((el,i) => {
+                if (el.categoryName === action.payload.catName) {
+                    let updatedItems = el.items.filter((item,index) => {
+                        return item !== action.payload.itemName;
+                    });
+                    return {
+                        categoryName: action.payload.catName, 
+                        items: [...updatedItems]
+                    }
+                } else {
+                    return {
+                        categoryName: el.categoryName,
+                        items: [...state.categories[i].items]
+                    }
+                }
+            });
+            return {
+                ...state,
+                categories: updatedListRemove
             }
         default:
             return state;

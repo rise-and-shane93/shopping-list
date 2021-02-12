@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect } from "react-redux";
-import { authActions, addItem } from '../redux/actions/authActions';
+import { authActions, addItem, removeItem } from '../redux/actions/authActions';
 
 class Item extends Component{
     constructor(props) {
@@ -9,12 +9,12 @@ class Item extends Component{
     }
 
     render() {
-        const {name, index, catName} = this.props;
+        const {name, index, catName, removeItem} = this.props;
         return(
             <div className="list-item">
                 <p>{name}&nbsp;</p>
-                <button class="list-item-button"><i class="fa fa-pencil" aria-hidden="true" aria-label="edit"></i></button>
-                <button class="list-item-button" aria-label="delete"><strong>&times;</strong></button>
+                <button className="list-item-button"><i className="fa fa-pencil" aria-hidden="true" aria-label="edit"></i></button>
+                <button className="list-item-button" aria-label="delete" onClick={() => removeItem(catName, name)}><strong>&times;</strong></button>
             </div>
         );
     }
@@ -31,6 +31,7 @@ export default connect(
     mapStateToProps,
     {
         authActions,
-        addItem
+        addItem,
+        removeItem
     }
 )(Item);
