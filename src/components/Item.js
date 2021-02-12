@@ -12,9 +12,9 @@ class Item extends Component{
         const {name, index, catName} = this.props;
         return(
             <div className="list-item">
-                <p>{name}</p>
-                <button><i class="fa fa-pencil" aria-hidden="true" aria-label="edit"></i></button>
-                <button aria-label="delete">&times;</button>
+                <p>{name}&nbsp;</p>
+                <button class="list-item-button"><i class="fa fa-pencil" aria-hidden="true" aria-label="edit"></i></button>
+                <button class="list-item-button" aria-label="delete"><strong>&times;</strong></button>
             </div>
         );
     }
