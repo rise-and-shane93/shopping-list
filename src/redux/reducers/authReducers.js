@@ -1,4 +1,4 @@
-import {ADD_CATEGORY, ADD_ITEM, REMOVE_ITEM, WELCOME_MSG} from '../actions/types';
+import {ADD_CATEGORY, ADD_ITEM, REMOVE_ITEM, WELCOME_MSG, EDIT_ITEM} from '../actions/types';
 
 const initialState = {
     message: "",
@@ -36,6 +36,35 @@ export default function(state = initialState, action) {
             return{
                 ...state,
                 categories: updatedListAdd
+            }
+        case EDIT_ITEM:
+            let updatedItemName = action.payload.itemName;
+            let categoryName = action.payload.catName;
+            let index = action.payload.index;
+            console.log(`Updated item's name is ${updatedItemName}, corresponding category is ${categoryName}, and index is ${index}`);
+            let updatedList = state.categories.map((el, i) => {
+                if (el.categoryName === categoryName) {
+                    return {
+                        categoryName,
+                        items: state.categories[i].items.map((el,i) => {
+                            if (i === index) {
+                                return updatedItemName;
+                            } else {
+                                return el;
+                            }
+                        })
+                    }
+                } else {
+                    return {
+                        categoryName,
+                        items: state.categories[i].items
+                    }
+                }
+            });
+            console.log(updatedList);
+            return {
+                ...state,
+                categories: updatedList
             }
         case REMOVE_ITEM:
             let updatedListRemove = state.categories.map((el,i) => {

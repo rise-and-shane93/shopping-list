@@ -7,12 +7,28 @@ class Item extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            isEdit: false
+            isEdit: false,
+            value: ""
         }
+    }
+
+    componentDidMount() {
+        this.setState({value: this.props.name});
     }
 
     editItem = () => {
         this.setState({isEdit: true});
+    }
+
+    handleChange = (event) => {
+        this.setState({value: event.target.value});
+    }
+
+    handleEditSubmit = (event) => {
+        event.preventDefault();
+        this.props.editItem(this.props.catName, this.state.value, this.props.index);
+        this.setState({isEdit: false});
+        // this.setState({value: ''});
     }
 
     render() {
@@ -27,7 +43,7 @@ class Item extends Component{
         return(
             <>
                 <div className="list-item" className={this.state.isEdit ? "display-none" : "display-block"}>
-                    <p>{name}&nbsp;</p>
+                    <p>{this.state.value}&nbsp;</p>
                     <button className="list-item-button"><i className="fa fa-pencil" aria-hidden="true" aria-label="edit" onClick={() => this.editItem()}></i></button>
                     <button className="list-item-button" aria-label="delete" onClick={() => removeItem(catName, name)}><strong>&times;</strong></button>
                 </div>

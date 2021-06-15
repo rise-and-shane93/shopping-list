@@ -32,9 +32,9 @@ export const removeItem = (catName, itemName) => dispatch => {
     })
 }
 
-export const editItem = (catName, itemName) => dispatch =>{
+export const editItem = (catName, itemName, index) => dispatch =>{
     dispatch({
         type: EDIT_ITEM,
-        payload: {catName, itemName}
+        payload: {catName, itemName, index}
     })
 }
