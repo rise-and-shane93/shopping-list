@@ -42,12 +42,14 @@ class Item extends Component{
         // }
         return(
             <>
-                <div className="list-item" className={this.state.isEdit ? "display-none" : "display-block"}>
+                <div className={this.state.isEdit ? "list-item display-none" : "list-item display-flex"}>
                     <p>{this.state.value}&nbsp;</p>
-                    <button className="list-item-button"><i className="fa fa-pencil" aria-hidden="true" aria-label="edit" onClick={() => this.editItem()}></i></button>
-                    <button className="list-item-button" aria-label="delete" onClick={() => removeItem(catName, name)}><strong>&times;</strong></button>
+                    <div className="list-item-buttons">
+                        <button className="list-item-button"><i className="fa fa-pencil" aria-hidden="true" aria-label="edit" onClick={() => this.editItem()}></i></button>
+                        <button className="list-item-button" aria-label="delete" onClick={() => removeItem(catName, name)}><strong>&times;</strong></button>
+                    </div>
                 </div>
-                <form onSubmit={this.handleEditSubmit} className={this.state.isEdit ? "display-block" : "display-none"}>
+                <form onSubmit={this.handleEditSubmit} className={this.state.isEdit ? "display-flex" : "display-none"}>
                     <input type="text" placeholder="Item" value={this.state.value} onChange={this.handleChange} />
                     <input type="submit" value="Edit Item" />
                 </form>

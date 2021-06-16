@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Item from "./Item";
+import CategoryHeader from './CategoryHeader';
 
 import { connect } from "react-redux";
 import { authActions, addItem } from '../redux/actions/authActions';
@@ -40,7 +41,7 @@ class Category extends Component {
 
         return(
             <>
-            <h2>{name}</h2>
+            <CategoryHeader name={name} index={index} />
             {theItems}
             <form onSubmit={this.handleSubmit}>
                 <input type="text" placeholder="Item" value={this.state.value} onChange={this.handleChange} />
