@@ -24,8 +24,12 @@ class Category extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.addItem(this.props.name, this.state.value);
-        this.setState({value: ''});
+        if (this.state.value !== "") {
+            this.props.addItem(this.props.name, this.state.value);
+            this.setState({value: ''});
+        } else {
+            alert("Please enter an item.");
+        }
     }
 
     handleChange = (event) => {

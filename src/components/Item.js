@@ -26,8 +26,12 @@ class Item extends Component{
 
     handleEditSubmit = (event) => {
         event.preventDefault();
-        this.props.editItem(this.props.catName, this.state.value, this.props.index);
-        this.setState({isEdit: false});
+        if (this.state.value !== "") {
+            this.props.editItem(this.props.catName, this.state.value, this.props.index);
+            this.setState({isEdit: false});
+        } else {
+            alert("Please enter an item.");
+        }
         // this.setState({value: ''});
     }
 

@@ -20,8 +20,12 @@ class Home extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.addCategory(this.state.value);
-        this.setState({value: ''});
+        if (this.state.value !== "") {
+            this.props.addCategory(this.state.value);
+            this.setState({value: ''});
+        } else {
+            alert("Please enter a category.");
+        }
     }
 
     handleChange = (event) => {

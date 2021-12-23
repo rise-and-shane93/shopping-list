@@ -56,7 +56,7 @@ export default function(state = initialState, action) {
                     }
                 } else {
                     return {
-                        categoryName,
+                        categoryName: el.categoryName,
                         items: state.categories[i].items
                     }
                 }
